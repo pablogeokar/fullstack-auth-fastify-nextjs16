@@ -1,9 +1,14 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import cookie from "@fastify/cookie";
 
 const app = Fastify({ logger: true });
 
-app.register(cors);
+app.register(cors, {
+    origin: process.env.APP_ORIGIN!,
+    credentials: true,
+});
+app.register(cookie);
 
 app.get("/", async () => {
     return { message: "Olá, mundo!" };

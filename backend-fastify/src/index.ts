@@ -1,11 +1,13 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
+import { config } from "./config/app.config.js";
 
 const app = Fastify({ logger: true });
+const BASE_PATH = config.BASE_PATH
 
 app.register(cors, {
-    origin: process.env.APP_ORIGIN!,
+    origin: config.APP_ORIGIN,
     credentials: true,
 });
 app.register(cookie);
@@ -16,7 +18,7 @@ app.get("/", async () => {
 
 const start = async () => {
     try {
-        const port = Number(process.env.PORT) || 8000;
+        const port = Number(config.PORT);
         await app.listen({ port, host: "0.0.0.0" });
     } catch (err) {
         app.log.error(err);

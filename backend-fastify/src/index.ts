@@ -2,15 +2,18 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
 import { config } from "./config/app.config.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = Fastify({ logger: true });
-const BASE_PATH = config.BASE_PATH
+const BASE_PATH = config.BASE_PATH;
 
 app.register(cors, {
     origin: config.APP_ORIGIN,
     credentials: true,
 });
 app.register(cookie);
+
+app.setErrorHandler(errorHandler);
 
 app.get("/", async () => {
     return { message: "Olá, mundo!" };

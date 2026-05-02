@@ -9,7 +9,7 @@ export function errorHandler(
 
     const statusCode = error.statusCode ?? 500;
 
-    reply.status(statusCode).send({
+    return reply.status(statusCode).send({
         message: statusCode >= 500 ? "Internal Server Error" : error.message,
         error: error.message || "Unknown error occurred",
     });

@@ -15,7 +15,7 @@ app.register(cookie);
 
 app.setErrorHandler(errorHandler);
 
-app.get("/", async () => {
+app.post("/", async () => {
     return { message: "Olá, mundo!" };
 });
 

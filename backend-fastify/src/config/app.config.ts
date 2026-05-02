@@ -5,6 +5,7 @@ const appConfig = () => ({
     APP_ORIGIN: getEnv("APP_ORIGIN", 'localhost'),
     PORT: getEnv("PORT", "8000"),
     BASE_PATH: getEnv("BASE_PATH", "/api/v1"),
+    DATABASE_URL: getEnv("DATABASE_URL"),
     JWT: {
         SECRET: getEnv("JWT_SECRET"),
         EXPIRES_IN: getEnv("JWT_EXPIRES_IN", '15min'),
